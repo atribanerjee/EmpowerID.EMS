@@ -8,7 +8,7 @@
 
 <form method="post">
     <div class="row">
-        <div class="col-3"><input type="text" placeholder="Search here..." class="form-control" id="txtSearch" asp-for="Search" maxlength="80" style="width:300px;" /></div>
+        <div class="col-3"><input type="text" placeholder="Search here..." class="form-control" id="txtSearch" asp-for="Search" maxlength="80" style="width:300px;" autocomplete="off"/></div>
         <div class="col-9"><input type="submit" value="Search" asp-page-handler="SearchEmployee" /></div>
     </div>
 </form>
