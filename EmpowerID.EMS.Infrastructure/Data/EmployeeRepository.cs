@@ -12,21 +12,43 @@ namespace EmpowerID.EMS.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public List<EmployeeViewModel> GetAll()
+        public List<EmployeeViewModel> GetAll(String Search = "")
         {
             try
             {
-                return (from e in _dbContext.Employees
-                        select new EmployeeViewModel
-                        {
-                            ID = e.ID,
-                            FirstName = e.FirstName,
-                            LastName = e.LastName,
-                            Email = e.Email,
-                            Phone = e.Phone,
-                            DepartmentID = e.DepartmentID,
-                            DepartmentName = (from d in _dbContext.Departments where d.ID == e.DepartmentID select d.Name).FirstOrDefault() ?? String.Empty
-                        }).ToList();
+                if (!String.IsNullOrEmpty(Search))
+                {
+                    return (from e in _dbContext.Employees join d in _dbContext.Departments on e.DepartmentID equals d.ID
+                            where e.FirstName.Contains(Search) ||
+                            e.LastName.StartsWith(Search) ||
+                            e.Email.StartsWith(Search) ||
+                            e.Phone.StartsWith(Search) ||
+                            d.Name.StartsWith(Search)
+                            select new EmployeeViewModel
+                            {
+                                ID = e.ID,
+                                FirstName = e.FirstName,
+                                LastName = e.LastName,
+                                Email = e.Email,
+                                Phone = e.Phone,
+                                DepartmentID = e.DepartmentID,
+                                DepartmentName = (from d in _dbContext.Departments where d.ID == e.DepartmentID select d.Name).FirstOrDefault() ?? String.Empty
+                            }).ToList();
+                }
+                else
+                {
+                    return (from e in _dbContext.Employees
+                            select new EmployeeViewModel
+                            {
+                                ID = e.ID,
+                                FirstName = e.FirstName,
+                                LastName = e.LastName,
+                                Email = e.Email,
+                                Phone = e.Phone,
+                                DepartmentID = e.DepartmentID,
+                                DepartmentName = (from d in _dbContext.Departments where d.ID == e.DepartmentID select d.Name).FirstOrDefault() ?? String.Empty
+                            }).ToList();
+                }
             }
             catch (Exception _Exception)
             {
@@ -107,12 +129,12 @@ namespace EmpowerID.EMS.Infrastructure.Data
             }
             return _EmployeeViewModel.ID;
         }
-        public Int32 Delete(EmployeeViewModel _EmployeeViewModel)
+        public Int32 Delete(Int32 ID)
         {
             try
             {
                 var EmployeeData = (from e in _dbContext.Employees
-                                    where e.ID == _EmployeeViewModel.ID
+                                    where e.ID == ID
                                     select e).FirstOrDefault();
 
                 if (EmployeeData != null && EmployeeData.ID > 0)
@@ -125,7 +147,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             {
 
             }
-            return _EmployeeViewModel.ID;
+            return ID;
         }
 
     }
