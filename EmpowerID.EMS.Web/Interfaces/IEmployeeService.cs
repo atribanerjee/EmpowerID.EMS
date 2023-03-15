@@ -4,11 +4,11 @@ namespace EmpowerID.EMS.Web.Interfaces
 {
     public interface IEmployeeService
     {
-        Int32 Add(EmployeeViewModel _EmployeeViewModel);
-        Int32 Update(EmployeeViewModel _EmployeeViewModel);
-        Int32 Delete(Int32 ID);
+        String Add(EmployeeViewModel _EmployeeViewModel);
+        String Update(EmployeeViewModel _EmployeeViewModel);
+        String Delete(String ID);
         List<EmployeeViewModel> GetAllEmployees(String Search="");
-        EmployeeViewModel GetEmployee(Int32 id);
+        EmployeeViewModel GetEmployee(String id);
         List<DepartmentViewModel> GetAllDepartments();
     }
 }

@@ -32,28 +32,28 @@ namespace EmpowerID.EMS.Web.Controllers
 
         [HttpGet]
         [Route("GetEmployee")]
-        public EmployeeViewModel GetEmployee(Int32 ID)
+        public EmployeeViewModel GetEmployee(String ID)
         {
             return _IEmployeeService.GetEmployee(ID);
         }
 
         [HttpPost]
         [Route("AddEmployee")]
-        public Int32 AddEmployee(EmployeeViewModel _EmployeeViewModel)
+        public String AddEmployee(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeService.Add(_EmployeeViewModel);
         }
 
         [HttpPost]
         [Route("EditEmployee")]
-        public Int32 EditEmployee(EmployeeViewModel _EmployeeViewModel)
+        public String EditEmployee(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeService.Update(_EmployeeViewModel);
         }
 
         [HttpPost]
         [Route("DeleteEmployee")]
-        public Int32 DeleteEmployee(Int32 ID)
+        public String DeleteEmployee(String ID)
         {
             return _IEmployeeService.Delete(ID);
         }

@@ -58,7 +58,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             return new List<EmployeeViewModel>();
         }
 
-        public EmployeeViewModel Get(Int32 ID)
+        public EmployeeViewModel Get(String ID)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             }
             return new EmployeeViewModel();
         }
-        public Int32 Add(EmployeeViewModel _EmployeeViewModel)
+        public String Add(EmployeeViewModel _EmployeeViewModel)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
                 return _EmployeeViewModel.ID;
             }
         }
-        public Int32 Update(EmployeeViewModel _EmployeeViewModel)
+        public String Update(EmployeeViewModel _EmployeeViewModel)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
                                     where e.ID == _EmployeeViewModel.ID
                                     select e).FirstOrDefault();
 
-                if (EmployeeData != null && EmployeeData.ID > 0)
+                if (EmployeeData != null )
                 {
                     EmployeeData.FirstName = _EmployeeViewModel.FirstName;
                     EmployeeData.LastName = _EmployeeViewModel.LastName;
@@ -129,7 +129,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             }
             return _EmployeeViewModel.ID;
         }
-        public Int32 Delete(Int32 ID)
+        public String Delete(String ID)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
                                     where e.ID == ID
                                     select e).FirstOrDefault();
 
-                if (EmployeeData != null && EmployeeData.ID > 0)
+                if (  EmployeeData != null  )
                 {
                     _dbContext.Remove(EmployeeData);
                     _dbContext.SaveChanges();

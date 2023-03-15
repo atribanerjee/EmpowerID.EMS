@@ -38,7 +38,7 @@ namespace EmpowerID.EMS.Web.Pages
             return this.Page();
         }
 
-        public IActionResult OnPostDeleteEmployee(Int32 id)
+        public IActionResult OnPostDeleteEmployee(String id)
         {
             _IEmployeeService.Delete(id);
             return RedirectToPage("/Index");            

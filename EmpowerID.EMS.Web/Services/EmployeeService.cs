@@ -14,12 +14,12 @@ namespace EmpowerID.EMS.Web.Services
             _IDepartmentRepository = iDepartmentRepository;
         }
 
-        public Int32 Add(EmployeeViewModel _EmployeeViewModel)
+        public String Add(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeRepository.Add(_EmployeeViewModel);
         }
 
-        public Int32 Update(EmployeeViewModel _EmployeeViewModel)
+        public String Update(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeRepository.Update(_EmployeeViewModel);
         }
@@ -34,12 +34,12 @@ namespace EmpowerID.EMS.Web.Services
             return _IEmployeeRepository.GetAll(Search);
         }
 
-        public EmployeeViewModel GetEmployee(Int32 id)
+        public EmployeeViewModel GetEmployee(String id)
         {
             return _IEmployeeRepository.Get(id);
         }
 
-        public Int32 Delete(Int32 ID)
+        public String Delete(String ID)
         {
             return _IEmployeeRepository.Delete(ID);
         }

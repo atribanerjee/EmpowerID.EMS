@@ -21,7 +21,7 @@ namespace EmpowerID.EMS.Web.Pages.Employee
 
         [BindProperty]
         [Required]
-        public Int32 EmployeeID { get; set; }
+        public String EmployeeID { get; set; }
         [BindProperty]
         [Required]
         public String FirstName { get; set; }
@@ -37,16 +37,16 @@ namespace EmpowerID.EMS.Web.Pages.Employee
         public String Phone { get; set; }
         [BindProperty]
         [Required]
-        public int DepartmentID { get; set; }
+        public String DepartmentID { get; set; }
         #endregion
 
-        public void OnGet(Int32 id)
+        public void OnGet(String id)
         {
             this.Departments = new SelectList(_IEmployeeService.GetAllDepartments(), "ID", "Name");
 
             var EmployeData = _IEmployeeService.GetEmployee(id);
 
-            if(EmployeData != null && EmployeData.ID>0) 
+            if(EmployeData != null ) 
             {
                 EmployeeID = EmployeData.ID;
                 FirstName= EmployeData.FirstName;
