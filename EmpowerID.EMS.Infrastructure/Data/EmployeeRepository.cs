@@ -58,7 +58,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             return new List<EmployeeViewModel>();
         }
 
-        public EmployeeViewModel Get(String ID)
+        public EmployeeViewModel Get(System.Guid ID)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             }
             return new EmployeeViewModel();
         }
-        public String Add(EmployeeViewModel _EmployeeViewModel)
+        public System.Guid Add(EmployeeViewModel _EmployeeViewModel)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
                 return _EmployeeViewModel.ID;
             }
         }
-        public String Update(EmployeeViewModel _EmployeeViewModel)
+        public System.Guid Update(EmployeeViewModel _EmployeeViewModel)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace EmpowerID.EMS.Infrastructure.Data
             }
             return _EmployeeViewModel.ID;
         }
-        public String Delete(String ID)
+        public System.Guid Delete(System.Guid ID)
         {
             try
             {

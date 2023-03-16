@@ -33,28 +33,28 @@ namespace EmpowerID.EMS.Api.Controllers
 
         [HttpGet]
         [Route("GetEmployee")]
-        public EmployeeViewModel GetEmployee(String ID)
+        public EmployeeViewModel GetEmployee(System.Guid ID)
         {
             return _IEmployeeService.GetEmployee(ID);
         }
 
         [HttpPost]
         [Route("AddEmployee")]
-        public String AddEmployee(EmployeeViewModel _EmployeeViewModel)
+        public System.Guid AddEmployee(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeService.Add(_EmployeeViewModel);
         }
 
         [HttpPost]
         [Route("EditEmployee")]
-        public String EditEmployee(EmployeeViewModel _EmployeeViewModel)
+        public System.Guid EditEmployee(EmployeeViewModel _EmployeeViewModel)
         {
             return _IEmployeeService.Update(_EmployeeViewModel);
         }
 
         [HttpPost]
         [Route("DeleteEmployee")]
-        public String DeleteEmployee(String ID)
+        public System.Guid DeleteEmployee(System.Guid ID)
         {
             return _IEmployeeService.Delete(ID);
         }

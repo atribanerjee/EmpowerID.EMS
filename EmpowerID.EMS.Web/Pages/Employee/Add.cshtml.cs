@@ -37,7 +37,7 @@ namespace EmpowerID.EMS.Web.Pages.Employee
         public String Phone { get; set; }
         [BindProperty]
         [Required]
-        public String DepartmentID { get; set; }
+        public System.Guid DepartmentID { get; set; }
         #endregion
 
 

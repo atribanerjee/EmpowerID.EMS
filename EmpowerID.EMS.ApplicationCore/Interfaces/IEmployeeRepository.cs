@@ -5,9 +5,9 @@ namespace EmpowerID.EMS.ApplicationCore.Interfaces
     public interface IEmployeeRepository
     {
         List<EmployeeViewModel> GetAll(String Search = "");
-        EmployeeViewModel Get(String ID);
-        String Add(EmployeeViewModel _EmployeeViewModel);
-        String Update(EmployeeViewModel _EmployeeViewModel);
-        String Delete(String ID);
+        EmployeeViewModel Get(System.Guid ID);
+        System.Guid Add(EmployeeViewModel _EmployeeViewModel);
+        System.Guid Update(EmployeeViewModel _EmployeeViewModel);
+        System.Guid Delete(System.Guid ID);
     }
 }

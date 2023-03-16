@@ -2,7 +2,7 @@
 {
     public class DepartmentViewModel
     {
-        public String ID { get; set; }
+        public System.Guid ID { get; set; }
         public String Name { get; set; }
     }
 }
