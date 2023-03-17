@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace EmpowerID.EMS.Web.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly IEmployeeService _IEmployeeService;
+        static HttpClient client = new HttpClient();
 
         public IndexModel(IEmployeeService iEmployeeService)
         {
@@ -27,9 +29,16 @@ namespace EmpowerID.EMS.Web.Pages
 
         #endregion
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            this.Employees= _IEmployeeService.GetAllEmployees();
+            //this.Employees= _IEmployeeService.GetAllEmployees();
+
+
+            HttpResponseMessage response = await client.GetAsync("https://localhost:7178/api/Employee/GetAllEmployees");
+            if (response.IsSuccessStatusCode)
+            {
+                this.Employees = await response.Content.ReadFromJsonAsync<List<EmployeeViewModel>>();
+            }            
         }
 
         public IActionResult OnPostSearchEmployee()

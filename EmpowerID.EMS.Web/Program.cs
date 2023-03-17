@@ -24,11 +24,12 @@ c.SwaggerDoc("v1", new OpenApiInfo
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        policy =>
-        {
-            policy.WithOrigins("https://localhost:7178");
-        });
+    options.AddPolicy("CORS", corsPolicyBuilder =>
+    {
+        corsPolicyBuilder.AllowAnyOrigin();
+        corsPolicyBuilder.AllowAnyMethod();
+        corsPolicyBuilder.AllowAnyHeader();
+    });
 });
 
 builder.Services.AddDbContext<EMSContext>(options =>
@@ -56,7 +57,8 @@ if (!app.Environment.IsDevelopment())
 
 }
 
-app.UseCors();
+app.UseCors("CORS");
+
 app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
