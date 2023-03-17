@@ -3,6 +3,7 @@ using EmpowerID.EMS.Api;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EmpowerID.EMS.Api.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace EmpowerID.EMS.Api.Controllers
 {
@@ -17,6 +18,7 @@ namespace EmpowerID.EMS.Api.Controllers
             _IEmployeeService = iEmployeeService;
         }
 
+        [EnableCors]
         [HttpGet]
         [Route("GetAllEmployees")]
         public List<EmployeeViewModel> GetAllEmployees()

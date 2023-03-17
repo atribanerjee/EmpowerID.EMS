@@ -22,6 +22,14 @@ c.SwaggerDoc("v1", new OpenApiInfo
     Version = "v1"
 }));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7178");
+        });
+});
 
 builder.Services.AddDbContext<EMSContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("EMSDBConn"),
@@ -48,6 +56,7 @@ if (!app.Environment.IsDevelopment())
 
 }
 
+app.UseCors();
 app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI(c =>

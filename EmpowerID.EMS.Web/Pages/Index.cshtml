@@ -1,14 +1,17 @@
-﻿@page 
+﻿@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
+<script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
 <h4>List of Employees</h4>
 
 <form method="post">
     <div class="row">
-        <div class="col-3"><input type="text" placeholder="Search here..." class="form-control" id="txtSearch" asp-for="Search" maxlength="80" style="width:300px;" autocomplete="off"/></div>
+        <div class="col-3"><input type="text" placeholder="Search here..." class="form-control" id="txtSearch" asp-for="Search" maxlength="80" style="width:300px;" autocomplete="off" /></div>
         <div class="col-9"><input type="submit" value="Search" asp-page-handler="SearchEmployee" /></div>
     </div>
 </form>
@@ -32,8 +35,8 @@
                 <td> @Employee.Email</td>
                 <td>@Employee.Phone</td>
                 <td>@Employee.DepartmentName</td>
-                <td>                    
-                    <a class="btn btn-success" asp-page="/Employee/Edit" asp-route-ID="@Employee.ID">Edit</a>                    
+                <td>
+                    <a class="btn btn-success" asp-page="/Employee/Edit" asp-route-ID="@Employee.ID">Edit</a>
                 </td>
                 <td>
                     <form method="post" onsubmit="return confirm('Are you sure?');">
@@ -52,3 +55,26 @@
         }
     </tbody>
 </table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        $.ajax({
+            dataType: 'json',
+            type: 'Get',
+            url: 'https://localhost:7178/api/Employee/GetAllEmployees',
+            //url: '@Url.Action("SaveMeasurmentZoom", "Measurement")',
+            data: {},
+            success: function (result) {
+               alert(result);
+            }
+
+            
+        })
+
+
+    });
+
+</script>
