@@ -1,6 +1,7 @@
 ﻿using EmpowerID.EMS.ApplicationCore.Interfaces;
 using EmpowerID.EMS.ApplicationCore.ViewModels;
 using EmpowerID.EMS.Web.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmpowerID.EMS.Web.Services
 {
@@ -38,7 +39,7 @@ namespace EmpowerID.EMS.Web.Services
         {
             return _IEmployeeRepository.Get(id);
         }
-
+        [AllowAnonymous]
         public System.Guid Delete(System.Guid ID)
         {
             return _IEmployeeRepository.Delete(ID);

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EmpowerID.EMS.Api.Interfaces;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmpowerID.EMS.Api.Controllers
 {
@@ -53,8 +54,8 @@ namespace EmpowerID.EMS.Api.Controllers
         {
             return _IEmployeeService.Update(_EmployeeViewModel);
         }
-
-        [HttpPost]
+        
+        [HttpGet]
         [Route("DeleteEmployee")]
         public System.Guid DeleteEmployee(System.Guid ID)
         {

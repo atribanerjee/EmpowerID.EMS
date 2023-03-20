@@ -41,15 +41,30 @@ namespace EmpowerID.EMS.Web.Pages
             }            
         }
 
-        public IActionResult OnPostSearchEmployee()
+        public async Task<IActionResult> OnPostSearchEmployeeAsync()
         {
-            this.Employees = _IEmployeeService.GetAllEmployees(Search);
-            return this.Page();
+            //this.Employees = _IEmployeeService.GetAllEmployees(Search);
+            //return this.Page();
+             HttpResponseMessage response = await client.GetAsync("https://localhost:7178/api/Employee/SearchEmployees?Search="+ Search);
+            if (response.IsSuccessStatusCode)
+            {
+                this.Employees = await response.Content.ReadFromJsonAsync<List<EmployeeViewModel>>();
+            }
+            return  this.Page();
         }
 
-        public IActionResult OnPostDeleteEmployee(System.Guid id)
+       
+        public async Task<IActionResult> OnPostDeleteEmployee(System.Guid id)
         {
-            _IEmployeeService.Delete(id);
+
+            HttpResponseMessage response = await client.GetAsync("https://localhost:7178/api/Employee/DeleteEmployee?ID=" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("/Index");
+               // this.Employees = await response.Content.ReadFromJsonAsync<List<EmployeeViewModel>>();
+            }
+           // return this.Page();
+            //_IEmployeeService.Delete(id);
             return RedirectToPage("/Index");            
         }
     }

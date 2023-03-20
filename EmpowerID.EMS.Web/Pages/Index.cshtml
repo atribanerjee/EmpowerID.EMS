@@ -25,25 +25,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var Employee in Model.Employees)
+        @if (Model.Employees != null && Model.Employees.Count > 0)
         {
-            <tr>
-                <td> @Employee.FirstName @Employee.LastName</td>
-                <td> @Employee.Email</td>
-                <td>@Employee.Phone</td>
-                <td>@Employee.DepartmentName</td>
-                <td>
-                    <a class="btn btn-success" asp-page="/Employee/Edit" asp-route-ID="@Employee.ID">Edit</a>
-                </td>
-                <td>
-                    <form method="post" onsubmit="return confirm('Are you sure?');">
-                        <input type="submit" class="btn btn-danger" value="Delete" asp-page-handler="DeleteEmployee" asp-route-ID="@Employee.ID" />
-                    </form>
-                </td>
-            </tr>
+            @foreach (var Employee in Model.Employees)
+            {
+                <tr>
+                    <td> @Employee.FirstName @Employee.LastName</td>
+                    <td> @Employee.Email</td>
+                    <td>@Employee.Phone</td>
+                    <td>@Employee.DepartmentName</td>
+                    <td>
+                        <a class="btn btn-success" asp-page="/Employee/Edit" asp-route-ID="@Employee.ID">Edit</a>
+                    </td>
+                    <td>
+                        <form method="post" onsubmit="return confirm('Are you sure?');">
+                            <input type="submit" class="btn btn-danger" value="Delete" asp-page-handler="DeleteEmployee" asp-route-ID="@Employee.ID" />
+                        </form>
+                    </td>
+                </tr>
+            }
         }
-        @if (Model.Employees.Count == 0)
+        else
         {
+
             <tr>
                 <td colspan="6">
                     No employee data is available!

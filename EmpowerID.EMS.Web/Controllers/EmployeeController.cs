@@ -1,5 +1,6 @@
 ﻿using EmpowerID.EMS.ApplicationCore.ViewModels;
 using EmpowerID.EMS.Web.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,7 +51,7 @@ namespace EmpowerID.EMS.Web.Controllers
         {
             return _IEmployeeService.Update(_EmployeeViewModel);
         }
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("DeleteEmployee")]
         public System.Guid DeleteEmployee(System.Guid ID)
